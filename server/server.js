@@ -46,19 +46,20 @@ let isAuthenticated = function(req, res, next) {
 
 app.post("/register", function (req, res, next) {
   let username = req.body.username;
+  let usernameLowerCase = username.toLowerCase();
   let password = req.body.password;
-  let email = req.body.email;
+  let email = req.body.email.toLowerCase();
   let salt = crypto.randomBytes(16).toString("base64");
   let hash = crypto.createHmac("sha512", salt);
   hash.update(password);
   let saltedHash = hash.digest("base64");
-  users.findOne({username: username}, function(err, user) {
+  users.findOne({usernameLowerCase: usernameLowerCase}, function(err, user) {
     if (err) return res.status(500).json({status: err});
     if (user) return res.status(409).json({status: "The username you entered is already registered."});
     users.findOne({email: email}, function(err, user) {
       if (err) return res.status(500).json({status: err});
       if (user) return res.status(409).json({status: "The email you entered is already registered."});
-      users.update({username: username}, {username, salt, saltedHash, email}, {upsert: true}, function(err) {
+      users.update({username: username}, {username, usernameLowerCase, salt, saltedHash, email}, {upsert: true}, function(err) {
         if (err) return res.status(500).json({status: err});
         req.session.username = username;
         return res.json({status: "Registration Successful."});
@@ -68,9 +69,9 @@ app.post("/register", function (req, res, next) {
 });
 
 app.post("/login", function (req, res, next) {
-  let username = req.body.username;
+  let username = req.body.username.toLowerCase();
   let password = req.body.password;
-  users.findOne({username: username}, function(err, user) {
+  users.findOne({usernameLowerCase: username}, function(err, user) {
     if (err) return res.status(500).json({status: err});
     if (!user) return res.status(401).json({status: "The username and password you entered did not match our records."});
     let salt = user.salt;

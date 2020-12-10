@@ -1,0 +1,211 @@
+#lobby.container{
+  height: 720px;
+  width: 1280px;
+
+}
+
+.lobby-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  position: absolute;
+  overflow: hidden;
+  height: 100%;
+  width: 60%;
+}
+
+.lobby-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F9F9F9;
+  padding: 0px 15px;
+  margin: 30px 30px 0 30px;
+  border: 1px hidden;
+  border-radius: 20px;
+  box-shadow: 0px 1px 4px 2px rgba(0,0,0,0.33);
+  height: 10%;
+  min-height: 10%;
+}
+
+.account {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-content: flex-end;
+  font-size: 15px;
+  box-shadow: none;
+  width: auto;
+}
+
+.prepend-profile-pic{
+  width: 40px;
+}
+
+.profile-pic {
+  background: url("../resources/images/male-profile.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+}
+
+.sign-out {
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.rooms-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F9F9F9;
+  padding: 0px 15px;
+  margin: 30px;
+  border: 1px hidden;
+  border-radius: 20px;
+  box-shadow: 0px 1px 4px 2px rgba(0,0,0,0.33);
+  height: 80%;
+  max-height: 80%;
+}
+
+.rooms {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: show;
+}
+
+.room {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 5px;
+  border: 1px hidden;
+  box-shadow: 0px 1px 4px 2px rgba(0,0,0,0.33);
+  border-radius: 10px;
+}
+
+.thumbnail.checkers {
+  background: url("../resources/images/checkers.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 120px;
+  width: 120px;
+}
+
+.thumbnail.chess {
+  background: url("../resources/images/chess.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 120px;
+  width: 120px;
+}
+
+.thumbnail.mahjong {
+  background: url("../resources/images/mahjong.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 120px;
+  width: 120px;
+}
+
+.thumbnail.monopoly {
+  background: url("../resources/images/money.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 120px;
+  width: 120px;
+}
+
+.thumbnail.poker {
+  background: url("../resources/images/cards.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 120px;
+  width: 120px;
+}
+
+.thumbnail.yahtzee {
+  background: url("../resources/images/dice.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 120px;
+  width: 120px;
+}
+
+.room-info {
+  width: 60%;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.input-group-append-icon.unlock{
+  background: url("../resources/images/unlocked.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+}
+
+.input-group-append-icon.lock{
+  background: url("../resources/images/locked.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+}
+
+.description {
+  margin-left: 10px;
+}
+
+.player-count{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 6px;
+}
+
+.player {
+  background: url("../resources/images/male-player.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+}
+
+.player.bw {
+  background: url("../resources/images/male-player-bw.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+}
+
+.join-btn {
+  cursor: pointer;
+  user-select: none;
+  background-color: #00B300;
+	font-size: 14px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  text-shadow: 0px 1px 4px 2px rgba(0,0,0,0.33);
+  padding: 35px 30px;
+  margin-right: 2.5%;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px 2px rgba(0,0,0,0.33);
+}

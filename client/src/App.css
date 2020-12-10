@@ -15,8 +15,32 @@
   100% {opacity: 0}
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.33);
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
 * {
   box-sizing: border-box;
+}
+
+html {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%
 }
 
 body {
@@ -26,10 +50,15 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   font-family: "Cocon-Regular-Font";
   font-weight: bold;
-  padding: 10%;
+  font-size: 14px;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
 }
 
 .container {
@@ -37,7 +66,7 @@ body {
 	background-color: #fff;
   overflow: hidden;
   border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.33), 0 7px 7px rgba(0,0,0,0.33);
+  box-shadow: 0px 2px 8px 4px rgba(0,0,0,0.33);
   height: 480px;
   width: 854px;
   animation: show 0.6s;
@@ -67,7 +96,7 @@ form {
   justify-content: center;
 	align-items: center;
   background-color: #FFFFFF;
-  padding: 0 50px;
+  padding: 0 75px;
 	height: 100%;
 }
 
@@ -81,20 +110,28 @@ form {
   width: 100%;
 }
 
-.input-group-prepend {
+.input-group-prepend, .input-group-append {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   background-color: #F9F9F9;
   border: 1px hidden;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  height: 100%;
-	width: 40px;
+  height: 100%;	
 }
 
-.input-group-prepend-icon {
+.input-group-prepend {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.input-group-append {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.input-group-prepend-icon, .input-group-append-icon {
   cursor: default;
   padding: 0;
   border: none;
@@ -105,6 +142,7 @@ form {
 .input-group-text{
   background-color: #F9F9F9;
   font-family: "Cocon-Regular-Font";
+  font-weight: bold;
 	padding: 12px;
   border: hidden;
   width: 100%;

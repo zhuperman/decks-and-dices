@@ -59,7 +59,7 @@ class Login extends React.Component {
   }
 
   handleRegisterUsername(event) {
-    this.setState({register: {...this.state.register, username: event.target.value}});
+    if (event.target.value.length <= 16) this.setState({register: {...this.state.register, username: event.target.value}});
   }
 
   handleRegisterEmail(event) {
@@ -80,7 +80,7 @@ class Login extends React.Component {
 
   handleSignUp(event) {
     event.preventDefault();
-    if (this.state.register.username.length === 0 || this.state.register.password.length === 0 || !/\S+@\S+\.\S+/.test(this.state.register.email)) {
+    if (this.state.register.username.length === 0 || this.state.register.username.length > 16 || this.state.register.password.length === 0 || !/\S+@\S+\.\S+/.test(this.state.register.email)) {
       this.setState({status: "You did not enter a username, password, and a valid email address."});
       return;
     }
@@ -115,7 +115,7 @@ class Login extends React.Component {
   render() {
     return (
       <div className="container" id="login" ref={this.container}>
-        <div className="form-container sign-in-container">
+        <div className="sign-container sign-in-container">
           <form onSubmit={this.handleSignIn}>
             <h1>Login</h1>
             <div className="social-container">
@@ -125,7 +125,7 @@ class Login extends React.Component {
             </div>
             <span>or use your account</span>
             <InputGroup>
-              <InputGroup.Prepend>
+              <InputGroup.Prepend className="prepend-sign-input">
                 <button className="input-group-prepend-icon username" disabled></button>
               </InputGroup.Prepend>
               <FormControl className="input-group-text"
@@ -133,12 +133,10 @@ class Login extends React.Component {
                 placeholder="Username"
                 value={this.state.login.username}
                 onChange={this.handleLoginUsername}
-                aria-label="Username"
-                aria-describedby="Username"
               />
             </InputGroup>
             <InputGroup>
-              <InputGroup.Prepend>
+              <InputGroup.Prepend className="prepend-sign-input">
               <button className="input-group-prepend-icon password" disabled></button>
               </InputGroup.Prepend>
               <FormControl className="input-group-text"
@@ -146,8 +144,6 @@ class Login extends React.Component {
                 placeholder="Password"
                 value={this.state.login.password}
                 onChange={this.handleLoginPassword}
-                aria-label="Password"
-                aria-describedby="Password"
               />
             </InputGroup>
             <span className="sign-status">{this.state.status}</span>
@@ -155,7 +151,7 @@ class Login extends React.Component {
             <button className="sign-btn">Sign In</button>
           </form>
         </div>
-        <div className="form-container sign-up-container">
+        <div className="sign-container sign-up-container">
           <form onSubmit={this.handleSignUp}>
             <h1>Registration</h1>
             <div className="social-container">
@@ -165,7 +161,7 @@ class Login extends React.Component {
             </div>
             <span>or use your email</span>
             <InputGroup>
-              <InputGroup.Prepend>
+              <InputGroup.Prepend className="prepend-sign-input">
                 <button className="input-group-prepend-icon username" disabled></button>
               </InputGroup.Prepend>
               <FormControl className="input-group-text"
@@ -173,12 +169,10 @@ class Login extends React.Component {
                 placeholder="Username"
                 value={this.state.register.username}
                 onChange={this.handleRegisterUsername}
-                aria-label="Username"
-                aria-describedby="Username"
               />
             </InputGroup>
             <InputGroup>
-              <InputGroup.Prepend>
+              <InputGroup.Prepend className="prepend-sign-input">
               <button className="input-group-prepend-icon password" disabled></button>
               </InputGroup.Prepend>
               <FormControl className="input-group-text"
@@ -191,7 +185,7 @@ class Login extends React.Component {
               />
             </InputGroup>
             <InputGroup>
-              <InputGroup.Prepend>
+              <InputGroup.Prepend className="prepend-sign-input">
               <button className="input-group-prepend-icon email" disabled></button>
               </InputGroup.Prepend>
               <FormControl className="input-group-text"
