@@ -125,7 +125,7 @@ class Login extends React.Component {
             </div>
             <span>or use your account</span>
             <InputGroup>
-              <InputGroup.Prepend className="prepend-sign-input">
+              <InputGroup.Prepend>
                 <button className="input-group-prepend-icon username" disabled></button>
               </InputGroup.Prepend>
               <FormControl className="input-group-text"
@@ -136,7 +136,7 @@ class Login extends React.Component {
               />
             </InputGroup>
             <InputGroup>
-              <InputGroup.Prepend className="prepend-sign-input">
+              <InputGroup.Prepend>
               <button className="input-group-prepend-icon password" disabled></button>
               </InputGroup.Prepend>
               <FormControl className="input-group-text"
@@ -161,7 +161,7 @@ class Login extends React.Component {
             </div>
             <span>or use your email</span>
             <InputGroup>
-              <InputGroup.Prepend className="prepend-sign-input">
+              <InputGroup.Prepend>
                 <button className="input-group-prepend-icon username" disabled></button>
               </InputGroup.Prepend>
               <FormControl className="input-group-text"
@@ -172,7 +172,7 @@ class Login extends React.Component {
               />
             </InputGroup>
             <InputGroup>
-              <InputGroup.Prepend className="prepend-sign-input">
+              <InputGroup.Prepend>
               <button className="input-group-prepend-icon password" disabled></button>
               </InputGroup.Prepend>
               <FormControl className="input-group-text"
@@ -185,7 +185,7 @@ class Login extends React.Component {
               />
             </InputGroup>
             <InputGroup>
-              <InputGroup.Prepend className="prepend-sign-input">
+              <InputGroup.Prepend>
               <button className="input-group-prepend-icon email" disabled></button>
               </InputGroup.Prepend>
               <FormControl className="input-group-text"
@@ -207,13 +207,13 @@ class Login extends React.Component {
               <h1>Hello, Stranger!</h1>
               <p>Create your account to start playing our collection of free games.</p>
               <span>Already have an account?</span>
-              <button className="sign-btn ghost" id="signIn" onClick={this.viewSignIn}>Sign In</button>
+              <button className="sign-btn" id="signIn" onClick={this.viewSignIn}>Sign In</button>
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Welcome Back!</h1>
               <p>Enter your credentials to jump right back into the action.</p>
               <span>Don't have an account yet?</span>
-              <button className="sign-btn ghost" id="signUp" onClick={this.viewSignUp}>Sign Up</button>
+              <button className="sign-btn" id="signUp" onClick={this.viewSignUp}>Sign Up</button>
             </div>
           </div>
         </div>

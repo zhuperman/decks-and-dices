@@ -44,7 +44,7 @@
   z-index: 1;
   width: 50%;
   opacity: 1;
-  animation: show 0.6s, moveLeft 0.6s;
+  animation: show 0.75s, moveLeft 0.75s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -52,7 +52,7 @@
 .container.toggle .sign-in-container {
   z-index: 0;
   opacity: 0;
-  animation: hide 0.6s, moveRight 0.6s;
+  animation: hide 0.75s, moveRight 0.75s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -61,7 +61,7 @@
   z-index: 0;
   width: 50%;
   opacity: 0;
-  animation: hide 0.6s, moveLeft 0.6s;
+  animation: hide 0.75s, moveLeft 0.75s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -69,7 +69,7 @@
 .container.toggle .sign-up-container {
   z-index: 1;
   opacity: 1;
-  animation: show 0.6s, moveRight 0.6s;
+  animation: show 0.75s, moveRight 0.75s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -79,34 +79,45 @@
 }
 
 .social {
-  display: inline-flex;
-	justify-content: center;
-  align-items: center;
   margin: 0 5px;
   border: 2px solid #E0E0E0;
   border-radius: 50%;
-  box-shadow: 0 0 5px 1px rgba(0,0,0,0.33);
+  box-shadow: 0 0 4px 1px rgba(0,0,0,0.5);
   height: 40px;
 	width: 40px;
 }
 
 .social.facebook {
   background: url("../resources/images/facebook.png");
-  background-size: 36px;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .social.google {
   background: url("../resources/images/google.png");
-  background-size: 36px;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .social.twitter {
   background: url("../resources/images/twitter.png");
-  background-size: 36px;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
-.prepend-sign-input {
-  width: 40px;
+.sign-container .input-group {
+  margin: 10px 0;
+}
+
+.sign-container .input-group-prepend {
+  margin: 0 1px;
+  height: 36px;
+  width: 36px;
+}
+
+.sign-container .input-group-prepend-icon {
+  height: 24px;
+  width: 24px;
 }
 
 .input-group-prepend-icon.username {
@@ -127,24 +138,27 @@
   background-repeat: no-repeat;
 }
 
+.sign-container .input-group-text {
+  padding: 12px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
 .sign-status {
   color: #FF0000;
 }
 
 .sign-btn {
-	background-color: #00B300;
+  background: linear-gradient(135deg, #00B300, #00CC00 50%, #00B300);
 	color: #FFFFFF;
-	font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  white-space: nowrap;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(0,0,0,0.33);
   padding: 12px 45px;
   margin: 15px 0 0 0;
-  border: 2px solid #00B300;
+  border: 2px solid #FFFFFF;
   border-radius: 20px;
-  box-shadow: 0px 1px 4px 2px rgba(0,0,0,0.33);
+}
+
+.overlay .sign-btn {
+  background: linear-gradient(135deg, #7EA4E7, #F99FDF);
 }
 
 @keyframes stretch {
@@ -159,14 +173,14 @@
   position: absolute;
   overflow: hidden;
   z-index: 100;
-	background: linear-gradient(135deg, #ff8080, #800000);
+	background: linear-gradient(135deg, #7EA4E7, #F99FDF);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0;
 	width: 50%;
   height: 100%;
-  transition: transform 0.6s ease-in-out;
-  animation: show 0.6s, moveRight 0.6s;
+  transition: transform 0.75s ease-in-out;
+  animation: show 0.75s, moveRight 0.75s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -183,7 +197,7 @@
   width: 200%;
   left: -100%;
   transform: translateX(0);
-	transition: transform 0.6s ease-in-out;
+	transition: transform 0.75s ease-in-out;
 }
 
 .container.toggle .overlay {
@@ -200,7 +214,7 @@
 	height: 100%;
 	width: 50%;
 	transform: translateX(0);
-	transition: transform 0.6s ease-in-out;
+	transition: transform 0.75s ease-in-out;
 }
 
 .container.toggle .overlay-panel {
@@ -210,17 +224,17 @@
 .overlay-left {
   position: relative;
   left: -25%;
-  animation: hide 1.2s;
+  animation: hide 1.5s;
 }
 
 .container.toggle .overlay-left {
-  animation: show 1.2s;
+  animation: show 1.5s;
 }
 
 .overlay-right {
-  animation: show 1.2s;
+  animation: show 1.5s;
 }
 
 .container.toggle .overlay-right {
-  animation: hide 1.2s;
+  animation: hide 1.5s;
 }
