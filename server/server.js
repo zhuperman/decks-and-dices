@@ -24,6 +24,7 @@ const session = expressSession({
 
 let lobby = new Lobby();
 let users = new dataStore({filename: "db/users.db", autoload: true, timestampData: true});
+let roomPasswords = {};
 let interval;
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -38,11 +39,6 @@ app.use(function (req, res, next) {
   console.log("HTTP Request:", req.sessionID + ":" + req.session.username, req.method, req.url, req.body);
   next();
 });
-
-let isAuthenticated = function(req, res, next) {
-  if (!req.session.username) return res.status(401).json({status: "Authentication Required"});
-  return next();
-};
 
 app.post("/register", function (req, res, next) {
   let username = req.body.username;
@@ -90,10 +86,6 @@ app.post("/logout", function (req, res, next) {
   });
 });
 
-app.get("/lobby", isAuthenticated, function (req, res, next) {
-  return res.json({status: "Welcome!", username: req.session.username, lobby: lobby});
-});
-
 let refresh = function(socket) {
   if (interval) {
     clearInterval(interval);
@@ -101,6 +93,13 @@ let refresh = function(socket) {
   interval = setInterval(function() {
     //TODO
   }, 1000);
+};
+
+let isAuthenticated = function(socket) {
+  if (!socket.handshake.session.username) {
+    socket.emit("authenticationRequired", {status: "You do not have permissions required for this request."});
+      return;
+  }
 };
 
 io.sockets.on("connection", function(socket) {
@@ -111,29 +110,58 @@ io.sockets.on("connection", function(socket) {
 
   socket.on("disconnect", function(data) {
     let player = lobby.getPlayer(socket.handshake.session.username);
+    socket.handshake.session.destroy(err => {});
     if (!player) return;
-    let username = player.getUsername();
-    lobby.removePlayer(socket.id);
-    io.sockets.emit("playerOffline", {message: username + " has left the lobby."});
+    let room = lobby.getRoom(player.roomId);
+    if (room) {
+      room.disconnectPlayer(player.username);
+      if (room.players.length == 0) lobby.removeRoom(room.id);
+    } else {
+      lobby.removePlayer(player.username);
+    }
+    io.sockets.emit("playerOffline", {status: player.username + " has left the lobby."});
   });
 
   socket.on("disconnectFromLobby", function(data) {
     let player = lobby.getPlayer(socket.handshake.session.username);
+    socket.handshake.session.destroy(err => {});
     if (!player) return;
-    let username = player.getUsername();
-    lobby.removePlayer(socket.id);
-    io.sockets.emit("playerOffline", {message: username + " has left the lobby."});
+    let room = lobby.getRoom(player.roomId);
+    if (room) {
+      room.disconnectPlayer(player.username);
+      if (room.players.length == 0) lobby.removeRoom(room.id);
+    } else {
+      lobby.removePlayer(player.username);
+    }
+    io.sockets.emit("playerOffline", {status: player.username + " has left the lobby."});
   });
 
   socket.on("connectToLobby", function(data) {
-    let player = new Player();
+    isAuthenticated(socket);
     let username = socket.handshake.session.username;
-    player.setUsername(username);
+    let player = new Player(username, socket.id);
     lobby.addPlayer(player);
-    player.setConnection(socket.id);
-    lobby.addPlayer(player);
-    io.sockets.emit("playerOnline", {message: username + " has joined the lobby."});
+    socket.emit("joinedLobby", {status: "Welcome!", username: username, lobby: lobby});
+    io.sockets.emit("playerOnline", {status: username + " has joined the lobby."});
   });
+
+  socket.on("createRoom", function(data) {
+    isAuthenticated(socket);
+    let username = socket.handshake.session.username;
+    let title = data.title;
+    if (!title) {
+      title = "Let's Play " + data.game + "!";
+    }
+    let player = lobby.getPlayer(username);
+    if (player) {
+      let room = new Room(title, data.game, data.password.length > 0);
+      roomPasswords[room.id] = data.password;
+      lobby.addRoom(room);
+      room.connectPlayer(player);
+      lobby.removePlayer(username);
+      io.sockets.emit("roomCreated", {status: username + " has created a new room. [" + data.title + "]", lobby: lobby});
+    }
+  })
 });
 
 server.listen(PORT, function() {

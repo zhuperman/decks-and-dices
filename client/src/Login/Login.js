@@ -80,7 +80,7 @@ class Login extends React.Component {
 
   handleSignUp(event) {
     event.preventDefault();
-    if (this.state.register.username.length === 0 || this.state.register.username.length > 16 || this.state.register.password.length === 0 || !/\S+@\S+\.\S+/.test(this.state.register.email)) {
+    if (!this.state.register.username || this.state.register.username.length > 16 || !this.state.register.password || !/\S+@\S+\.\S+/.test(this.state.register.email)) {
       this.setState({status: "You did not enter a username, password, and a valid email address."});
       return;
     }
@@ -97,7 +97,7 @@ class Login extends React.Component {
 
   handleSignIn(event) {
     event.preventDefault();
-    if (this.state.login.username.length === 0 || this.state.login.password.length === 0) {
+    if (!this.state.login.username || !this.state.login.password) {
       this.setState({status: "You did not enter a username or password."});
         return;
       }
