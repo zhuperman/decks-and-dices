@@ -1,0 +1,184 @@
+@keyframes loadRoom {
+  from {opacity: 0; left: 100%}
+  to {opacity: 1; left: 0}
+}
+
+.room {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  background-color: #F2F2F2;
+  margin: 15px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.5);
+}
+
+.room .game-thumbnail {
+  cursor: default;
+  border: none;
+  box-shadow: none;
+  height: 120px;
+  width: 120px;
+}
+
+.game-thumbnail.checkers {
+  background: url("../../resources/images/checkers.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.game-thumbnail.chess {
+  background: url("../../resources/images/chess.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.game-thumbnail.mahjong {
+  background: url("../../resources/images/mahjong.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.game-thumbnail.monopoly {
+  background: url("../../resources/images/money.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.game-thumbnail.poker {
+  background: url("../../resources/images/cards.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.game-thumbnail.yahtzee {
+  background: url("../../resources/images/dice.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.room-info {
+  width: 65%;
+}
+
+.room-title.input-group {
+  background-color: #F9F9F9;
+  border-radius: 20px;
+  margin: 12px 0;
+}
+
+.room-title .input-group-text {
+  margin: 8px;
+}
+
+.room-title .input-group-append {
+  background-color: #CCCCCC;
+  padding: 5px;
+  border-radius: 20px;
+}
+
+.room-title .input-group-append-icon {
+  height: 22px;
+  width: 22px;
+}
+
+.room-title .input-group-append-icon.unlock {
+  background: url("../../resources/images/unlocked.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.room-title .input-group-append-icon.lock {
+  background: url("../../resources/images/locked.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.room-info .room-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.room-details select {
+  text-align-last: center;
+  padding: 3px;
+}
+
+.room-details select:disabled {
+  color: #000000;
+  opacity: 1;
+  appearance: none;
+}
+
+.room-details .room-password {
+  width: 50%;
+}
+
+.room-details .input-group-prepend {
+  background-color: #CCCCCC;
+  padding: 3px;
+}
+
+.room-password .input-group-prepend-icon {
+  background: url("../../resources/images/key.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+}
+
+.room-password .input-group-text {
+  padding: 4px 6px;
+  border-radius: 0 20px 20px 0;
+}
+
+.player-count {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 8px;
+}
+
+.player-count .player {
+  background: url("../../resources/images/male-player.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+}
+
+.player-count .player.bw {
+  background: url("../../resources/images/male-player-bw.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+}
+
+.room .create, .room .join {
+  border: none;
+  box-shadow: none;
+}
+
+.room .create {
+  background: url("../../resources/images/create.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 80px;
+  width: 100px;
+}
+
+.room .join {
+  background: url("../../resources/images/join.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 80px;
+  width: 80px;
+  margin-right: 20px;
+}

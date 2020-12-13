@@ -6,27 +6,28 @@
 .lobby-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: stretch;
-  position: absolute;
   overflow: hidden;
+  background-color: #F2F2F2;
+  padding: 20px 36px;
+  box-shadow: 0 0 1px 1px rgba(0,0,0,1);
   height: 100%;
   width: 60%;
   animation: show 1s;
 }
 
-.lobby-header {
+.lobby-container .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: #F2F2F2;
-  padding: 0px 15px;
-  margin: 30px 30px 0 30px;
   border-radius: 20px;
-  box-shadow: 0 0 4px 2px rgba(0,0,0,0.5);
-  height: 8%;
-  min-height: 8%;
+}
+
+.header h1{
+  margin: 0;
 }
 
 .account {
@@ -35,18 +36,17 @@
   justify-content: flex-end;
   align-content: flex-end;
   background-color: transparent;
-
   box-shadow: none;
 }
 
-.input-group-prepend.profile-pic {
+.account .input-group-prepend {
   background-color: transparent;
   height: 40px;
   width: 40px;
   margin: 5px;
 }
 
-.profile-pic {
+.account .input-group-prepend-icon {
   background: url("../resources/images/male-profile.png");
   background-size: 100%;
   background-repeat: no-repeat;
@@ -54,207 +54,25 @@
   width: 100%;
 }
 
-.divider {
+.account .divider {
+  user-select: none;
   font-size: 28px;
   margin: 0 5px;
 }
 
-.sign-out {
+.account .sign-out {
   cursor: pointer;
   white-space: nowrap;
 }
 
-.rooms-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #F2F2F2;
-  padding: 0px 15px;
-  margin: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 4px 2px rgba(0,0,0,0.5);
-  height: 80%;
-  max-height: 80%;
-}
-
-.rooms {
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: show;
-}
-
-.room {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  background-color: #F2F2F2;
-  margin: 20px 5px;
-  border-radius: 20px;
-  box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.5);
-}
-
-@keyframes loadRoom {
-  from {opacity: 0; left: 100%}
-  to {opacity: 1; left: 0}
-}
-
-.input-group-prepend-icon.game {
-  height: 120px;
-  width: 120px;
-}
-
-.input-group-prepend-icon.checkers {
-  background: url("../resources/images/checkers.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-.input-group-prepend-icon.chess {
-  background: url("../resources/images/chess.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-.input-group-prepend-icon.mahjong {
-  background: url("../resources/images/mahjong.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-.input-group-prepend-icon.monopoly {
-  background: url("../resources/images/money.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-.input-group-prepend-icon.poker {
-  background: url("../resources/images/cards.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-.input-group-prepend-icon.yahtzee {
-  background: url("../resources/images/dice.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-.room-info {
-  width: 60%;
-}
-
-.room-info .input-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #F9F9F9;
-  border-radius: 20px;
-  margin: 12px 0;
-}
-
-.room-info .input-group-text.room-title {
-  margin: 8px;
-}
-
-.room-info .input-group-append {
-  background-color: #F9F9F9;
-  margin: 0 8px;
-  height: 25px;
-  width: 25px;
-}
-
-.room-info .input-group-append-icon {
-  height: 100%;
-  width: 100%;
-}
-
-.input-group-append-icon.unlock{
-  background: url("../resources/images/unlocked.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-.input-group-append-icon.lock{
-  background: url("../resources/images/locked.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-
-.description-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.description {
-  margin-left: 10px;
-}
-
-.game-mode {
-  width: 90px;
-}
-
-.input-group.room-password {
-  margin: 0;
-  width: 50%;
-}
-
-.input-group-prepend-icon.room-password {
-  background: url("../resources/images/key.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  height: 14px;
-  width: 14px;
-}
-
-.input-group-text.room-password {
-  padding: 0 5px;
-  border-radius: 0 20px 20px 0;
-}
-
-.player-count{
+.select-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin: 8px;
 }
 
-.player {
-  background: url("../resources/images/male-player.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  height: 20px;
-  width: 20px;
-}
-
-.player.bw {
-  background: url("../resources/images/male-player-bw.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  height: 20px;
-  width: 20px;
-}
-
-.input-group-append-icon.create {
-  background: url("../resources/images/create.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  height: 80px;
-  width: 100px;
-}
-
-.input-group-append-icon.join {
-  background: url("../resources/images/join.png");
-  background-size: 100%;
-  background-repeat: no-repeat;
-  height: 80px;
-  width: 80px;
-  margin-right: 20px;
+.select-container select {
+  margin-left: 6px;
+  width: 95px;
 }

@@ -1,15 +1,25 @@
 #login h1 {
-	margin: 0;
+  margin: 0;
 }
 
 #login p {
   letter-spacing: 0.5px;
-	line-height: 20px;
-	margin: 20px 0;
+  line-height: 20px;
+  margin: 20px 0;
 }
 
 #login span {
   margin-bottom: 10px;
+}
+
+#login form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  padding: 0 75px;
+  height: 100%;
 }
 
 @keyframes show {
@@ -37,7 +47,7 @@
 .sign-container {
   position: absolute;
   overflow: hidden;
-	height: 100%;
+  height: 100%;
 }
 
 .sign-in-container {
@@ -75,7 +85,7 @@
 }
 
 .social-container {
-	margin: 25px 0;
+  margin: 25px 0;
 }
 
 .social {
@@ -84,7 +94,11 @@
   border-radius: 50%;
   box-shadow: 0 0 4px 1px rgba(0,0,0,0.5);
   height: 40px;
-	width: 40px;
+  width: 40px;
+}
+
+.social:hover{
+  transform: scale(1.05);
 }
 
 .social.facebook {
@@ -150,11 +164,15 @@
 
 .sign-btn {
   background: linear-gradient(135deg, #00B300, #00CC00 50%, #00B300);
-	color: #FFFFFF;
+  color: #FFFFFF;
   padding: 12px 45px;
   margin: 15px 0 0 0;
   border: 2px solid #FFFFFF;
   border-radius: 20px;
+}
+
+.sign-btn:hover {
+  transform: scale(1.05);
 }
 
 .overlay .sign-btn {
@@ -173,11 +191,11 @@
   position: absolute;
   overflow: hidden;
   z-index: 100;
-	background: linear-gradient(135deg, #7EA4E7, #F99FDF);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: 0;
-	width: 50%;
+  background: linear-gradient(135deg, #7EA4E7, #F99FDF);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0;
+  width: 50%;
   height: 100%;
   transition: transform 0.75s ease-in-out;
   animation: show 0.75s, moveRight 0.75s;
@@ -193,11 +211,11 @@
   color: #FFFFFF;
   position: relative;
   display: flex;
-	height: 100%;
+  height: 100%;
   width: 200%;
   left: -100%;
   transform: translateX(0);
-	transition: transform 0.75s ease-in-out;
+  transition: transform 0.75s ease-in-out;
 }
 
 .container.toggle .overlay {
@@ -208,13 +226,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-	align-items: center;
+  align-items: center;
   text-align: center;
   padding: 0 50px;
-	height: 100%;
-	width: 50%;
-	transform: translateX(0);
-	transition: transform 0.75s ease-in-out;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.75s ease-in-out;
 }
 
 .container.toggle .overlay-panel {
