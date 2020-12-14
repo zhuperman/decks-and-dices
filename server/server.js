@@ -137,6 +137,18 @@ io.sockets.on("connection", function(socket) {
     socket.join("lobby");
   });
 
+  socket.on("sendMessage", function(data) {
+    if (!isAuthenticated()) return;
+    let player = socket.handshake.session.username;
+    let message = data.message;
+    if (lobby.findPlayer(player)) {
+      io.to("lobby").emit("userMessage", {status: message, username: player});
+      return;
+    }
+    let room = lobby.findPlayerRoom(player);
+    io.to(room.id).emit("userMessage", {status: message, username: player});
+  })
+
   socket.on("createRoom", function(data) {
     if (!isAuthenticated()) return;
 

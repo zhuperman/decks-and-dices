@@ -1,0 +1,71 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow: hidden;
+  background-color: #F2F2F2;
+  padding: 0 6px;
+  height: 100%;
+  width: 312px;
+  animation: show 1s;
+}
+
+.chat-container .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0 25px;
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #FFFFFF;
+  overflow-x: hidden;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 2px 2px rgba(0,0,0,0.5);
+  height: 80%;
+}
+
+.message-input.input-group {
+  margin-top: 21px;
+}
+
+.message-input .input-group-prepend, .message-input .input-group-append {
+  background-color: #FFFFFF;
+  padding: 4px;
+}
+
+.message-input .input-group-prepend-icon {
+  background: url("../resources/images/male-head.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+}
+
+.message-input .input-group-prepend-icon.typing {
+  background: url("../resources/images/male-thinking.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+}
+
+.message-input .input-group-text {
+  background-color: #FFFFFF;
+  padding: 12px 0;
+}
+
+.message-input .input-group-append-icon {
+  background: url("../resources/images/send-message.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+}

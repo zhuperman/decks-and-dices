@@ -2,14 +2,14 @@ import React from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import QueriedRooms from "./QueriedRooms/QueriedRooms";
 import io from "socket.io-client";
+import Chat from "../Chat/Chat";
 import "./Lobby.css";
-
-let socket;
 
 class Lobby extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      socket: io(),
       username: "",
       players: [],
       rooms: []
@@ -18,32 +18,31 @@ class Lobby extends React.Component {
   }
 
   componentDidMount() {
-    socket = io();
 
-    socket.onAny(function(event, ...args) {
+    this.state.socket.onAny(function(event, ...args) {
       console.log("Socket Event:", event, args);
     });
 
-    socket.on("authenticationRequired", data => {
+    this.state.socket.on("authenticationRequired", data => {
       this.props.history.push("/login");
     });
 
-    socket.on("serverUpdate", data => {
+    this.state.socket.on("serverUpdate", data => {
       this.setState({username: data.username ? data.username : this.state.username});
     });
 
-    socket.on("lobbyUpdate", data => {
+    this.state.socket.on("lobbyUpdate", data => {
       this.setState({
         players: data.players ? data.players: this.state.players,
         rooms: data.rooms ? data.rooms: this.state.rooms
       });
     });
 
-    socket.emit("connectToLobby", {});
+    this.state.socket.emit("connectToLobby", {});
   }
 
   handleSignOut(event) {
-    socket.emit("disconnectFromLobby", {});
+    this.state.socket.emit("disconnectFromLobby", {});
     fetch("/logout", {
       method: "POST"
     }).then(response => response.json())
@@ -69,8 +68,9 @@ class Lobby extends React.Component {
               <span className="sign-out" onClick={this.handleSignOut}>Sign Out</span>
             </InputGroup>
           </div>
-          <QueriedRooms socket={socket} rooms={this.state.rooms}></QueriedRooms>
+          <QueriedRooms socket={this.state.socket} rooms={this.state.rooms}></QueriedRooms>
         </div>
+        <Chat socket={this.state.socket}></Chat>
       </div>
     )
   }

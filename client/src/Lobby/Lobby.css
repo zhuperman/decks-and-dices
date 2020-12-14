@@ -1,6 +1,12 @@
 #lobby.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F2F2F2;
+  padding: 20px 20px;
   height: 720px;
-  width: 1280px;
+  width: 1080px;
 }
 
 .lobby-container {
@@ -9,11 +15,9 @@
   justify-content: flex-start;
   align-items: stretch;
   overflow: hidden;
-  background-color: #F2F2F2;
-  padding: 20px 36px;
-  box-shadow: 0 0 1px 1px rgba(0,0,0,1);
+  padding: 0 16px;
   height: 100%;
-  width: 60%;
+  width: 768px;
   animation: show 1s;
 }
 
@@ -26,7 +30,7 @@
   border-radius: 20px;
 }
 
-.header h1{
+.header h1 {
   margin: 0;
 }
 

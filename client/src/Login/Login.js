@@ -30,6 +30,7 @@ class Login extends React.Component {
     this.handleSocial = this.handleSocial.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
   }
 
   componentDidMount() {
@@ -112,6 +113,15 @@ class Login extends React.Component {
       });
   }
 
+  handleEnter(event) {
+    if (event.key !== "Enter") return;
+    if (this.container.current.classList.length === 2) {
+      this.handleSignUp(event);
+    } else {
+      this.handleSignIn(event);
+    }
+  }
+
   render() {
     return (
       <div className="container" id="login" ref={this.container}>
@@ -133,6 +143,7 @@ class Login extends React.Component {
                 placeholder="Username"
                 value={this.state.login.username}
                 onChange={this.handleLoginUsername}
+                onKeyDown={this.handleEnter}
               />
             </InputGroup>
             <InputGroup>
@@ -144,6 +155,7 @@ class Login extends React.Component {
                 placeholder="Password"
                 value={this.state.login.password}
                 onChange={this.handleLoginPassword}
+                onKeyDown={this.handleEnter}
               />
             </InputGroup>
             <span className="sign-status">{this.state.status}</span>
@@ -169,6 +181,7 @@ class Login extends React.Component {
                 placeholder="Username"
                 value={this.state.register.username}
                 onChange={this.handleRegisterUsername}
+                onKeyDown={this.handleEnter}
               />
             </InputGroup>
             <InputGroup>
@@ -180,6 +193,7 @@ class Login extends React.Component {
                 placeholder="Password"
                 value={this.state.register.password}
                 onChange={this.handleRegisterPassword}
+                onKeyDown={this.handleEnter}
                 aria-label="Password"
                 aria-describedby="Password"
               />
@@ -193,6 +207,7 @@ class Login extends React.Component {
                 placeholder="Email"
                 value={this.state.register.email}
                 onChange={this.handleRegisterEmail}
+                onKeyDown={this.handleEnter}
                 aria-label="Email"
                 aria-describedby="Email"
               />

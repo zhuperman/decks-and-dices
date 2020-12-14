@@ -1,55 +1,30 @@
-const Room = require("./room");
+const {nanoid} = require("nanoid");
+const maxPlayers = {"Chess": 2, "Checkers": 2, "Mahjong": 4, "Monopoly": 4, "Poker": 4, "Yahtzee": 8};
 
-function Lobby() {
+function Room(title, game, private) {
+  this.id = nanoid();
+  this.title = title;
+  this.game = game;
+  this.private = private;
   this.players = [];
-  this.rooms = [];
-  this.roomPasswords = {};
+  this.maxPlayers = maxPlayers[game];
+  this.date = Date.now();
 }
 
-Lobby.prototype.addPlayer = function(player) {
-  if (!this.findPlayer(player)) this.players.push(player);
-};
-
-Lobby.prototype.removePlayer = function(player) {
-  this.players = this.players.filter(p => p != player);
-};
-
-Lobby.prototype.findPlayer = function(player) {
-  return this.players.find(p => p == player);
-};
-
-Lobby.prototype.createRoom = function(title, game, password, player) {
-  let room = new Room(title, game, password.length > 0);
-  this.rooms.push(room);
-  this.roomPasswords[room.id] = password;
-  this.removePlayer(player);
-  room.addPlayer(player);
-  return room;
-};
-
-Lobby.prototype.deleteRoom = function(room) {
-  this.rooms = this.rooms.filter(r => r.id != room.id);
-  delete this.roomPasswords[room.id];
-};
-
-Lobby.prototype.findRoom = function(roomId) {
-  return this.rooms.find(room => room.id == roomId);
-};
-
-Lobby.prototype.findPlayerRoom = function(player) {
-  return this.rooms.map(room => room.findPlayer(player) ? room : null).filter(room => room != null)[0];
-};
-
-Lobby.prototype.testRoomPassword = function(room, password) {
-  return password == this.roomPasswords[room.id];
-};
-
-Lobby.prototype.connectPlayerToRoom = function(room, player) {
-  if (room.addPlayer(player)) {
-    this.removePlayer(player);
+Room.prototype.addPlayer = function(player) {
+  if (this.players.length < this.maxPlayers) {
+    this.players.push(player);
     return true;
   }
   return false;
 };
 
-module.exports = Lobby;
+Room.prototype.removePlayer = function(player) {
+  this.players = this.players.filter(p => p != player);
+};
+
+Room.prototype.findPlayer = function(player) {
+  return this.players.find(p => p == player);
+};
+
+module.exports = Room;

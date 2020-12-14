@@ -1,7 +1,7 @@
 .rooms-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: stretch;
   align-items: center;
   background-color: #F2F2F2;
   border-radius: 20px;
