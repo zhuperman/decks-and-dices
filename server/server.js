@@ -110,13 +110,15 @@ io.sockets.on("connection", function(socket) {
     if (room) {
       room.removePlayer(player);
       socket.leave(room.id);
-      socket.to(room.id).emit("roomUpdate", {status: player + " has left the room.", room: room});
+      socket.to(room.id).emit("roomUpdate", {room: room});
+      socket.to(room.id).emit("eventMessage", {status: "[Room] " + player + " has left the room."});
       if (room.players.length == 0) lobby.deleteRoom(room);
       delete socket.handshake.session.roomId;
     }
     lobby.removePlayer(player);
     socket.leave("lobby");
-    io.to("lobby").emit("lobbyUpdate", {status: player + " is now offline.", players: lobby.players, rooms: lobby.rooms});
+    io.to("lobby").emit("lobbyUpdate", {players: lobby.players, rooms: lobby.rooms});
+    io.to("lobby").emit("eventMessage", {status: "[Server] " + player + " is now offline."});
   };
 
   socket.on("disconnect", function(data) {
@@ -131,9 +133,11 @@ io.sockets.on("connection", function(socket) {
     if (!isAuthenticated()) return;
     let player = socket.handshake.session.username;
     lobby.addPlayer(player);
-    io.to("lobby").emit("lobbyUpdate", {status: player + " is now online.", players: lobby.players, rooms: lobby.rooms});
-    socket.emit("serverUpdate", {status: "Welcome, " + player + "!", username: player});
-    socket.emit("lobbyUpdate",  {players: lobby.players, rooms: lobby.rooms});
+    socket.emit("serverUpdate", {username: player});
+    socket.emit("lobbyUpdate", {players: lobby.players, rooms: lobby.rooms});
+    socket.emit("eventMessage", {status: "[Server] Welcome, " + player + "!"});
+    io.to("lobby").emit("lobbyUpdate", {players: lobby.players, rooms: lobby.rooms});
+    io.to("lobby").emit("eventMessage", {status: "[Server] " + player + " is now online."});
     socket.join("lobby");
   });
 
@@ -142,19 +146,19 @@ io.sockets.on("connection", function(socket) {
     let player = socket.handshake.session.username;
     let message = data.message;
     if (lobby.findPlayer(player)) {
-      io.to("lobby").emit("userMessage", {status: message, username: player});
+      io.to("lobby").emit("eventMessage", {status: "[" + player + "] " + message});
       return;
     }
     let room = lobby.findPlayerRoom(player);
-    io.to(room.id).emit("userMessage", {status: message, username: player});
-  })
+    io.to(room.id).emit("eventMessage", {status: "[" + player + "] " + message});
+  });
 
   socket.on("createRoom", function(data) {
     if (!isAuthenticated()) return;
 
     let player = socket.handshake.session.username;
     if (lobby.findPlayerRoom(player)) {
-      socket.emit("serverUpdate", {status: "You are already in a room."});
+      socket.emit("eventMessage", {status: "[Server] You are already in a room."});
       return;
     }
     let title = data.title ? data.title : "Let's Play " + data.game + "!";
@@ -162,35 +166,38 @@ io.sockets.on("connection", function(socket) {
     let password = data.password ? data.password : "";
     let room = lobby.createRoom(title, game, password, player);
     socket.leave("lobby");
-    io.to("lobby").emit("lobbyUpdate", {status: player + " has created a new " + game + " room. [" + title + "]", players: lobby.players, rooms: lobby.rooms});
+    io.to("lobby").emit("lobbyUpdate", {players: lobby.players, rooms: lobby.rooms});
+    io.to("lobby").emit("eventMessage", {status: "[Lobby] " + player + " has created a new " + game + " room. [" + title + "]"});
     socket.handshake.session.roomId = room.id;
     socket.join(room.id);
-    io.to(room.id).emit("roomUpdate", {status: player + " has joined the room.", room: room});
+    io.to(room.id).emit("roomUpdate", {room: room});
+    io.to(room.id).emit("eventMessage", {status: "[Room] " + player + " has joined the room."});
   });
 
   socket.on("joinRoom", function(data) {
     if (!isAuthenticated()) return;
     let player = socket.handshake.session.username;
     if (lobby.findPlayerRoom(player)) {
-      socket.emit("serverUpdate", {status: "You are already in a room."});
+      socket.emit("eventMessage", {status: "[Server] You are already in a room."});
       return;
     }
     let roomId = data.roomId;
     let room = lobby.findRoom(roomId);
     let password = data.password;
     if (!lobby.testRoomPassword(room, password)) {
-      socket.emit("serverUpdate", {status: "You did not enter the correct password for the room."});
+      socket.emit("eventMessage", {status: "[Lobby] You did not enter the correct password for the room."});
       return;
     }
     if (!lobby.connectPlayerToRoom(room, player, password)) {
-      socket.emit("serverUpdate", {status: "The room is full."});
+      socket.emit("eventMessage", {status: "[Lobby] The room you tried to enter has reached maximum capacity."});
       return;
     }
     socket.handshake.session.roomId = room.id;
     socket.leave("lobby");
     socket.to("lobby").emit("lobbyUpdate",  {players: lobby.players, rooms: lobby.rooms});
     socket.join(room.id);
-    io.to(room.id).emit("roomUpdate", {status: player + " has joined the room.", room: room});
+    io.to(room.id).emit("roomUpdate", {room: room});
+    io.to(room.id).emit("eventMessage", {status: "[Room] " + player + " has joined the room."});
   });
 });
 

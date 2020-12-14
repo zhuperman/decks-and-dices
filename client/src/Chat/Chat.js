@@ -16,20 +16,8 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
-    this.props.socket.on("userMessage", data => {
-      this.setState({messages: data.status ? this.state.messages.concat("[" + data.username + "] " + data.status) : this.state.messages});
-    });
-
-    this.props.socket.on("serverUpdate", data => {
-      this.setState({messages: data.status ? this.state.messages.concat("[Server] " + data.status) : this.state.messages});
-    });
-
-    this.props.socket.on("lobbyUpdate", data => {
-      this.setState({messages: data.status ? this.state.messages.concat("[Lobby] " + data.status) : this.state.messages});
-    });
-
-    this.props.socket.on("roomUpdate", data => {
-      this.setState({messages: data.status ? this.state.messages.concat("[Room] " + data.status) : this.state.messages});
+    this.props.socket.on("eventMessage", data => {
+      this.setState({messages: this.state.messages.concat(data.status)});
     });
   }
 
