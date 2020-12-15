@@ -47,7 +47,7 @@ class QueriedRooms extends React.Component {
     }
     queriedRooms.map((room, i) => room.index = i);
     queriedRooms.map(room => room.key = room.index + room.id + query.search + query.filter + query.sort);
-    queriedRooms.map(room => room.animationTime = room.index < 5 ? 2 + room.index : Math.min(6.5 + 0.5 * (room.index - 4), 10));
+    queriedRooms.map(room => room.animationTime = room.index < 5 ? 1.5 + 0.5 * (room.index) : Math.min(4 + 0.25 * (room.index - 4), 5));
 
     return (
       <div className="queried-rooms-wrapper">

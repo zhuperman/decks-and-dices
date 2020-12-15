@@ -1,23 +1,12 @@
-#lobby.container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #F2F2F2;
-  padding: 20px 20px;
-  height: 720px;
-  width: 1080px;
-}
-
 .lobby-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
   overflow: hidden;
-  padding: 0 16px;
+  padding: 0 6px;
   height: 100%;
-  width: 768px;
+  width: 720px;
   animation: show 1s;
 }
 
@@ -67,16 +56,4 @@
 .account .sign-out {
   cursor: pointer;
   white-space: nowrap;
-}
-
-.select-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.select-container select {
-  margin-left: 6px;
-  width: 95px;
 }

@@ -92,7 +92,7 @@ class Login extends React.Component {
     }).then(response => response.json())
     .then(data => {
       this.setState({status: data.status});
-      if (data.status === "Registration Successful.") this.props.history.push("/lobby");
+      if (data.status === "Registration Successful.") this.props.history.push("/");
     });
   }
 
@@ -109,7 +109,7 @@ class Login extends React.Component {
       }).then(response => response.json())
       .then(data => {
         this.setState({status: data.status});
-        if (data.status === "Login Successful.") this.props.history.push("/lobby");
+        if (data.status === "Login Successful.") this.props.history.push("/");
       });
   }
 

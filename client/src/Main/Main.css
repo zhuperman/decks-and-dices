@@ -1,0 +1,22 @@
+#main.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F2F2F2;
+  padding: 20px;
+  height: 720px;
+  width: 1080px;
+}
+
+.select-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.select-container select {
+  margin-left: 6px;
+  width: 95px;
+}

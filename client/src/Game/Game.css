@@ -1,0 +1,11 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow: hidden;
+  padding: 0 6px;
+  height: 100%;
+  width: 720px;
+  animation: show 1s;
+}
